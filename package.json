@@ -12,6 +12,9 @@
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "14.3.0"
+  },
   "bugs": {
     "url": "https://github.com/yuvallhv/ChordsAnalyzerWebsite/issues"
   },

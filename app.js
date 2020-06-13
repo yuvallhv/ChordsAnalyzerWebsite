@@ -35,12 +35,18 @@ app.post("/", function(req, res) {
   res.redirect("/");
 });
 
-app.listen(3000, function() {
+
+// start the server
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+app.listen(port, function() {
   console.log("Server started on port 3000");
 });
 
 
-
+// ***************** functions ******************
 function find(collectionName, query, callback) {
     mongoose.connection.db.collection(collectionName, function (err, collection) {
        collection.find(query).toArray(callback);
