@@ -12,13 +12,19 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
 // get secrets
-const secrets = JSON.parse(fs.readFileSync('secrets.json'));
-const username = secrets.username;
-const password = secrets.password;
-const host = secrets.host;
-const jsonsLocation = secrets.jsonsLocation;
-const dbName = secrets.dbName;
-const collectionName = secrets.collection;
+// const secrets = JSON.parse(fs.readFileSync('secrets.json'));
+// const username = secrets.username;
+// const password = secrets.password;
+// const host = secrets.host;
+// const jsonsLocation = secrets.jsonsLocation;
+// const dbName = secrets.dbName;
+// const collectionName = secrets.collection;
+
+const username = "admin-yuval";
+const password = "miniProjPass";
+const host = "songsdataclusters-shard-00-01-qgiff.mongodb.net:27017";
+const dbName = "test";
+const collectionName = "artists";
 
 mongoose.connect("mongodb+srv://" + username + ":" + password + "@songsdataclusters-qgiff.mongodb.net/" + dbName + "?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true  });
 
