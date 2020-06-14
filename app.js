@@ -33,6 +33,27 @@ app.get("/", function(req, res) {
   //       });
 });
 
+app.get("/SimilarProjects", function(req, res) {
+  res.render("SimilarProjects");
+});
+
+app.get("/Results", function(req, res) {
+  const artists = find(collection, {}, function (err, artists) {
+            console.log("found " + artists.length + " artists in the DB");
+            res.render("Results", {artists: artists});
+        });
+});
+
+
+app.get("/AboutTheProject", function(req, res) {
+  res.render("AboutTheProject");
+
+});
+
+app.get("/AboutUs", function(req, res) {
+  res.render("AboutUs");
+});
+
 app.post("/", function(req, res) {
 
   res.redirect("/");
