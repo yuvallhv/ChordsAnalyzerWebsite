@@ -19,16 +19,18 @@ app.use(express.static("public"));
 const password = process.env.MONGO_DB_PASSWORD;
 const host = process.env.HOST;
 const dbName = process.env.DB_NAME;
-const collectionName = process.env.COLLECTION_NAME;
+const collection = process.env.COLLECTION_NAME;
 
 mongoose.connect("mongodb+srv://" + username + ":" + password + "@songsdataclusters-qgiff.mongodb.net/" + dbName + "?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true  });
 
 
 app.get("/", function(req, res) {
-  const artists = find(collectionName, {}, function (err, artists) {
-            console.log("found " + artists.length + " artists in the DB");
-            res.render("home", {artists: artists});
-        });
+  res.render("home");
+
+  // const artists = find(collection, {}, function (err, artists) {
+  //           console.log("found " + artists.length + " artists in the DB");
+  //           res.render("home", {artists: artists});
+  //       });
 });
 
 app.post("/", function(req, res) {
@@ -48,8 +50,8 @@ app.listen(port, function() {
 
 
 // ***************** functions ******************
-function find(collectionName, query, callback) {
-    mongoose.connection.db.collection(collectionName, function (err, collection) {
+function find(collection, query, callback) {
+    mongoose.connection.db.collection(collection, function (err, collection) {
        collection.find(query).toArray(callback);
    });
 }
