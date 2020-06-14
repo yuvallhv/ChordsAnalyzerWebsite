@@ -1,3 +1,6 @@
+// this should always be at the top
+require("dotenv").config();
+
 const fs = require("fs");
 const express = require("express");
 const bodyParser = require("body-parser");
@@ -11,20 +14,12 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
-// get secrets
-// const secrets = JSON.parse(fs.readFileSync('secrets.json'));
-// const username = secrets.username;
-// const password = secrets.password;
-// const host = secrets.host;
-// const jsonsLocation = secrets.jsonsLocation;
-// const dbName = secrets.dbName;
-// const collectionName = secrets.collection;
-
-const username = "admin-yuval";
-const password = "miniProjPass";
-const host = "songsdataclusters-shard-00-01-qgiff.mongodb.net:27017";
-const dbName = "test";
-const collectionName = "artists";
+// get env variables
+ const username = process.env.MONGO_DB_USERNANE;
+const password = process.env.MONGO_DB_PASSWORD;
+const host = process.env.HOST;
+const dbName = process.env.DB_NAME;
+const collectionName = process.env.COLLECTION_NAME;
 
 mongoose.connect("mongodb+srv://" + username + ":" + password + "@songsdataclusters-qgiff.mongodb.net/" + dbName + "?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true  });
 
