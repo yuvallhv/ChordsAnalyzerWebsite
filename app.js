@@ -37,10 +37,10 @@ app.get("/SimilarProjects", function(req, res) {
   res.render("SimilarProjects");
 });
 
-app.get("/Results", function(req, res) {
+app.get("/OurFindings", function(req, res) {
   const artists = find(collection, {}, function (err, artists) {
             console.log("found " + artists.length + " artists in the DB");
-            res.render("Results", {artists: artists});
+            res.render("OurFindings", {artists: artists});
         });
 });
 
