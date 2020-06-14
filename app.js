@@ -26,11 +26,6 @@ mongoose.connect("mongodb+srv://" + username + ":" + password + "@songsdataclust
 
 app.get("/", function(req, res) {
   res.render("home");
-
-  // const artists = find(collection, {}, function (err, artists) {
-  //           console.log("found " + artists.length + " artists in the DB");
-  //           res.render("home", {artists: artists});
-  //       });
 });
 
 app.get("/SimilarProjects", function(req, res) {
@@ -54,10 +49,14 @@ app.get("/AboutUs", function(req, res) {
   res.render("AboutUs");
 });
 
-app.post("/", function(req, res) {
-
-  res.redirect("/");
+app.get("/DataSchema", function(req, res) {
+  res.render("DataSchema");
 });
+
+// app.post("/", function(req, res) {
+//
+//   res.redirect("/");
+// });
 
 
 // start the server

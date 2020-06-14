@@ -10,7 +10,6 @@
 
 html {
   margin: 0;
-
   height: 100%;
 }
 
@@ -20,15 +19,29 @@ body {
   color: #5a5a5a;
   background-color: #e8e8e8;
   font-family: 'Yanone Kaffeesatz', sans-serif;
-
+  text-align: center;
   height: 100%;
   margin: 0;
+}
+
+p, li {
+  font-size: 1.4em;
+  font-weight: 300;
+}
+
+.li-header {
+  font-weight: bolder;
+}
+
+.btn {
+  font-weight: 200;
 }
 
 .content {
   min-height: 100%;
   margin-bottom: -130px;
 }
+
 
 /* ----------- Top navbar ----------- */
 .navbar {
@@ -126,6 +139,20 @@ body {
   background-color: #145374;
 }
 
+/* ----------- pages text content ----------- */
+.text-container {
+  width: 75%;
+  position: relative;
+  margin: 80px auto;
+  text-align: left;
+}
+
+.quotations-container {
+  width: 95%;
+  margin: 0 auto;
+  font-style: italic;
+}
+
 /* ----------- Footer ----------- */
 .footer-section {
   margin-top: 60px;
@@ -136,6 +163,7 @@ body {
   flex-shrink: 0;
   font-weight: 300;
   height: 130px;
+  font-size: 0.7em;
 }
 
 .push {
