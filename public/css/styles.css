@@ -147,6 +147,11 @@ p, li {
   text-align: left;
 }
 
+.page-header {
+  padding-bottom: 10px;
+  color: #145374;
+}
+
 .quotations-container {
   width: 95%;
   margin: 0 auto;
@@ -178,6 +183,7 @@ p, li {
   color: #5588a3;
 }
 
+
 /* ----------- pages images ----------- */
 .bird-img {
   float: right;
@@ -186,6 +192,35 @@ p, li {
   height: 40%;
   opacity: 0.2;
   border-radius: 50px;
+}
+
+/* ----------- json data ----------- */
+.json-data {
+  font-size: 1em;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: bolder;
+  line-height: 60%;
+  color: #222831;
+}
+
+.json-explain {
+  color: #919191;
+}
+
+.json-key {
+  color: #6431b5;
+}
+
+.json-string {
+  color: #257bc4;
+}
+
+.json-int {
+  color: #d67f2d;
+}
+
+.json-float {
+  color: #389c4c;
 }
 
 /* ----------- responsive ----------- */
