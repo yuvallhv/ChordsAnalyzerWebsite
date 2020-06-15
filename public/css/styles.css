@@ -178,6 +178,16 @@ p, li {
   color: #5588a3;
 }
 
+/* ----------- pages images ----------- */
+.bird-img {
+  float: right;
+  margin-left: 10px;
+  width: 40%;
+  height: 40%;
+  opacity: 0.2;
+  border-radius: 50px;
+}
+
 /* ----------- responsive ----------- */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */

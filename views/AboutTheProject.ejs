@@ -1,13 +1,13 @@
 <%- include('partials/header'); -%>
 
-<div class="text-container">
+<img class="bird-img" src="../images/bird.png" alt="sdfsdfsdf">
 
-  <!-- <img src="../images/piano drawing.jpeg" alt="fdsjflsdkjflksdjfl"> -->
+<div class="text-container">
 
   <h1>About the project</h1>
   <p>
     This project was done as part of Digital Humanities course in Ben Gurion University.<br>
-    We choose to investigate songs through the aspect of chord since this is an interesting and unique way to ask questions about songs.<br>
+    We choose to investigate songs through the aspect of chord since this is an interesting and unique way to ask questions about songs.
   </p>
   <br>
   <hr>
@@ -44,7 +44,7 @@
     <li><span class="li-header">Data source</span> - we found a popular website called <a class="footer-link" href="https://www.tab4u.com/">Tab4u</a> that holds an impressive amount of songs with their chords, words and some information about the artists.</li>
     <li><span class="li-header">Data scraping</span> - we created a web scraper in Python using Selenium library that collected for us the data we needed.</li>
     <li><span class="li-header">Initial Data schema</span> - we scraped data as json files, each one represents an artist. <br>
-      Our main focus was chords but we didn’t want to lose any data and since it wasn’t expensive in terms of space, we created a data schema which holds most of the information about the songs including the chords, lyrics, tabs and information about the artist.
+      Our main focus was chords but we didn’t want to lose any data and since it wasn’t expensive in terms of space, we created a data schema which holds most of the information about the songs including the chords, lyrics, tabs and information about the artist.</li>
   </ul>
   <br>
 
@@ -55,28 +55,41 @@
     <li><span class="li-header">Get general information</span> - for the analysis of the data we needed to go over all the data and get general information. <br>
       For example: all the possible categories for songs.</li>
     <li><span class="li-header">Fix mistakes</span> - since the data on the website is not perfect and the scraping process also is prone for errors, we tried to fix some of the major mistakes we found. <br>
-      For example: fixing out of place chorus names.
+      For example: fixing out of place chorus names.</li>
   </ul>
   <p><a class="btn btn-secondary" href="DataSchema" role="button">To view the final data schema &raquo;</a></p>
   <br>
 
   <h3>Step 3: Data Analysis</h3>
-
+  <p>
+    To enable flexibility and speed with the way we analyze the data, we decided to use a database.<br>
+    Since we chose to save the data as json files the natural choice was MongoDB database and using Mongoose to query the data.
+  </p>
+  <!-- TODO: decide if there is a need for more info -->
   <br>
 
   <h3>Step 4: Results visualization</h3>
-
+  <p>
+    To present the project we created a website hosted on Heroku cloud application platform.<br>
+    This required us to use (and learn) different web technologies such as HTML, CSS and Express.<br>
+    Using a web server enabled us to integrate MongoDB queries instead of showing static results.
+  </p>
+  <!-- TODO: decide if there is a need for more info about the results - (do we have graphs? or something else) -->
   <br>
   <hr>
   <br>
   <br>
 
-  <h2>Technologies Summery</h2>
+  <h2>Technologies Summary</h2>
+  <p>We used various technologies through the project.</p>
+  <ul>
+    <li><span class="li-header">Data Collection</span> - Python, Selenium</li>
+    <li><span class="li-header">Data Processing</span> - Python </li>
+    <li><span class="li-header">Data Analysis</span> - MongoDB, Mongoose</li>
+    <li><span class="li-header">Results visualization</span> - HTML, CSS, Node.js, Express</li>
+  </ul>
   <br>
 
 </div>
-
-
-
 
 <%- include('partials/footer'); -%>
