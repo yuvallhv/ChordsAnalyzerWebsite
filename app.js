@@ -6,6 +6,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const mongoose = require("mongoose");
+var favicon = require('serve-favicon');
+var path = require('path');
 
 const app = express();
 
@@ -13,6 +15,7 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
+app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // get env variables
  const username = process.env.MONGO_DB_USERNANE;
