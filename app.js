@@ -18,7 +18,7 @@ app.use(express.static("public"));
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 // get env variables
- const username = process.env.MONGO_DB_USERNANE;
+const username = process.env.MONGO_DB_USERNANE;
 const password = process.env.MONGO_DB_PASSWORD;
 const host = process.env.HOST;
 const dbName = process.env.DB_NAME;
