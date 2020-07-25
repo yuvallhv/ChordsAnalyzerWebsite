@@ -17,20 +17,14 @@ const NavComp  = (props) =>
             </li>
 
             <li class="nav-item">
-            <Link to="/findings">
-              <a class="nav-link" href="OurFindings">Our findings</a>
-              </Link>
-            </li>
-
-            <li class="nav-item">
             <Link to="/about_project">
               <a class="nav-link" href="AboutTheProject">About the project</a>
               </Link>
             </li>
 
             <li class="nav-item">
-            <Link to="/about_us">
-              <a class="nav-link" href="AboutUs">About us</a>
+            <Link to="/findings">
+              <a class="nav-link" href="OurFindings">Our findings</a>
               </Link>
             </li>
 
@@ -46,6 +40,11 @@ const NavComp  = (props) =>
               </Link>
             </li>
 
+            <li class="nav-item">
+            <Link to="/about_us">
+              <a class="nav-link" href="AboutUs">About us</a>
+              </Link>
+            </li>
 
           </ul>
         </div>

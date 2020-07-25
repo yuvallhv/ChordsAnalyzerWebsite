@@ -252,6 +252,32 @@ p, li {
   color: #389c4c;
 }
 
+/* ----------- our findings ----------- */
+.parameters-header-container  {
+  text-align: center;
+}
+
+.parameters-container {
+  text-align: center;
+  width: 350px;
+}
+
+.graph-parameter-checkbox {
+  margin-right: 10px;
+}
+
+.graph-parameters {
+  font-family: 'Yanone Kaffeesatz', sans-serif;
+  font-size: 1.3em;
+  color: gray;
+}
+
+.form-options {
+  text-align: left;
+  padding-left: 120px;
+  /* width: 100px; */
+}
+
 /* ----------- responsive ----------- */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
