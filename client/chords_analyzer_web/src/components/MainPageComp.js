@@ -24,7 +24,11 @@ const MainPageComp  = (props) =>
             <img class="circle-image" src={require("../design/images/chord1.png")} alt=""></img>
             <h2>Our Findings</h2>
             <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-secondary" href="OurFindings" role="button">Read more &raquo;</a></p>
+            <p>
+              <Link to="/findings">
+                <a class="btn btn-secondary" href="OurFindings" role="button">Read more &raquo;</a>
+              </Link>
+            </p>
           </div>
           <div class="col-lg-4">
             <img class="circle-image" src={require("../design/images/chord2.png")} alt=""/>
@@ -33,13 +37,21 @@ const MainPageComp  = (props) =>
               This project was done as part of Digital Humanities course in Ben Gurion University.<br/>
               Read about the topic, goal and process.
             </p>
-            <p><a class="btn btn-secondary" href="AboutTheProject" role="button">Read more &raquo;</a></p>
+            <p>
+              <Link to="/about_project">
+                <a class="btn btn-secondary" href="AboutTheProject" role="button">Read more &raquo;</a>
+              </Link>
+            </p>
           </div>
           <div class="col-lg-4">
             <img class="circle-image" src={require("../design/images/chord3.png")} alt=""/>
             <h2>About Us</h2>
             <p>We are Chaim and Yuval.</p>
-            <p><a class="btn btn-secondary" href="AboutUs" role="button">Read more &raquo;</a></p>
+            <p>
+              <Link to="/about_us">
+                <a class="btn btn-secondary" href="AboutUs" role="button">Read more &raquo;</a>
+              </Link>
+            </p>
           </div>
         </div>
       </div>

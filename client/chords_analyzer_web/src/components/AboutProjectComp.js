@@ -79,7 +79,11 @@ const AboutProjectComp = (props) => {
           <li><span class="li-header">Fix mistakes</span> - since the data on the website is not perfect and the scraping process also is prone for errors, we tried to fix some of the major mistakes we found. <br />
       For example: fixing out of place chorus names.</li>
         </ul>
-        <p><a class="btn btn-secondary" href="DataSchema" role="button">To view the final data schema &raquo;</a></p>
+        <p>
+          <Link to="/DataScheme">
+          <a class="btn btn-secondary" href="DataSchema" role="button">To view the final data schema &raquo;</a>
+          </Link>
+          </p>
         <br />
 
         <h3>Step 3: Data Analysis</h3>
