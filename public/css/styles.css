@@ -251,16 +251,6 @@ p, li {
   color: #389c4c;
 }
 
-/* ----------- similar projects ----------- */
-.similar-projects-header {
-  padding-top: 20px;
-}
-
-.similar-projects-article-link {
-  font-size: 1.5em;
-  color: #5588a3;
-}
-
 /* ----------- responsive ----------- */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */

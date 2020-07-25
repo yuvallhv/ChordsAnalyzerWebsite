@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yuvallhv/ChordsAnalyzerWebsite.git"
+    "url": "git+https://github.com/yuvallhv/ChordsDistributionWebsite.git"
   },
   "author": "",
   "license": "ISC",
@@ -16,15 +18,19 @@
     "node": "14.3.0"
   },
   "bugs": {
-    "url": "https://github.com/yuvallhv/ChordsAnalyzerWebsite/issues"
+    "url": "https://github.com/yuvallhv/ChordsDistributionWebsite/issues"
   },
-  "homepage": "https://github.com/yuvallhv/ChordsAnalyzerWebsite#readme",
+  "homepage": "https://github.com/yuvallhv/ChordsDistributionWebsite#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "ejs": "^3.1.3",
     "express": "^4.17.1",
+    "filejson": "^1.0.15",
+    "jsonfile": "^6.0.1",
     "mongoose": "^5.9.18",
+    "nodemon": "^2.0.4",
     "serve-favicon": "^2.5.0"
   }
 }

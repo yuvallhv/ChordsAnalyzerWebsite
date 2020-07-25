@@ -35,7 +35,7 @@ const FindingsComp = (props) => {
   useEffect(() => {
     async function getDataFromServer() {
       console.log("im here")
-      let chords_weight = await axios.get('http://localhost:5000/getInfoOfAllSongs')
+      let chords_weight = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfAllSongs')
       chords_weight = chords_weight.data
       setChordsWeight(chords_weight.result)
       // await setData(curr_data.data.list_elements)
@@ -50,11 +50,11 @@ const FindingsComp = (props) => {
     console.log(e.target.value)
     if (e.target.value === "category") {
       setIsCategory(true)
-      curr_data = await axios.get('http://localhost:5000/getCategories')
+      curr_data = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getCategories')
     }
     else {
       setIsCategory(false)
-      curr_data = await axios.get('http://localhost:5000/getArtists')
+      curr_data = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getArtists')
     }
     setData(curr_data.data.list_elements)
   }
@@ -63,10 +63,10 @@ const FindingsComp = (props) => {
   async function handleClick(category) {
     let chords_weight = []
     if (isCategory) {
-      chords_weight = await axios.post('http://localhost:5000/getInfoOfSpecificCategory', { value: category })
+      chords_weight = await axios.post('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfSpecificCategory', { value: category })
     }
     else {
-      chords_weight = await axios.post('http://localhost:5000/getInfoOfSpecificArtist', { value: category })
+      chords_weight = await axios.post('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfSpecificArtist', { value: category })
     }
     chords_weight = chords_weight.data
     console.log(chords_weight)
