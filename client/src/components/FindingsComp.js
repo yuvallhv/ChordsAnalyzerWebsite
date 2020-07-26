@@ -18,10 +18,6 @@ const FindingsComp = (props) => {
 
   let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
   let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
-  console.log(chords_weight.result)
-  console.log(chords_weight)
-  console.log(chords)
-  console.log(weight)
   let state = {
     labels: chords,
     datasets: [
@@ -41,8 +37,6 @@ const FindingsComp = (props) => {
       let chords_weight = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfAllSongs')
       chords_weight = chords_weight.data
       setChordsWeight(chords_weight.result)
-      // await setData(curr_data.data.list_elements)
-      // console.log(data)
     }
     getDataFromServer()
   }, [])
@@ -64,6 +58,10 @@ const FindingsComp = (props) => {
 
 
   async function handleClick(category) {
+    let port = process.env.PORT;
+    console.log("kdjfhskjdhfkjsdhfkjhd")
+    console.log(window.location.hostname)
+
     let chords_weight = []
     if (isCategory) {
       chords_weight = await axios.post('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfSpecificCategory', { value: category })
