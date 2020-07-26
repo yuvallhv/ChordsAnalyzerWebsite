@@ -206,6 +206,15 @@ p, li {
   height: 40%;
 }
 
+
+/* ----------- about the project page ----------- */
+.youtube-video-container {
+  width: 640px;
+  height: 360px;
+  display: block;
+  margin: 0 auto;
+}
+
 /* ----------- about us page ----------- */
 .about-us-single-container {
   margin-top: 60px;

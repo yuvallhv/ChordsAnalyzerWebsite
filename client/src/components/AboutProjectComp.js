@@ -1,6 +1,8 @@
 import React from 'react'
+import ReactPlayer from "react-player"
 import '../design/css/styles.css';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
+
 
 const AboutProjectComp = (props) => {
   return (
@@ -36,9 +38,13 @@ const AboutProjectComp = (props) => {
         <p>
           The following YouTube video is of a comedy rock band named “Axis of Awesome” that claims that all the greatest songs hits use the same 4 chords.
         </p>
-        <iframe width="420" height="315"
-          src="https://www.youtube.com/watch?v=5pidokakU4I">
-        </iframe>
+
+        <div class="youtube-video-container">
+          <div class="youtube-video">
+            <ReactPlayer url="https://www.youtube.com/watch?v=5pidokakU4I" />
+          </div>        
+        </div>
+        
         <br />
         <hr />
         <br />
