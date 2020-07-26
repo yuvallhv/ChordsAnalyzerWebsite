@@ -287,6 +287,11 @@ p, li {
   /* width: 100px; */
 }
 
+.data-source-link {
+  color: #145374;
+  font-size: 1.3em;
+}
+
 /* ----------- responsive ----------- */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */

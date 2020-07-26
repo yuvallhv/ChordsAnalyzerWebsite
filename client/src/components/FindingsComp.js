@@ -13,7 +13,9 @@ import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 const FindingsComp = (props) => {
   const [isCategory, setIsCategory] = useState(true)
   const [data, setData] = useState([])
-  const [chords_weight, setChordsWeight] = useState([])
+  const [artistUrl, setArtistUrl] = useState("")
+  const [chords_weight, setChordsWeight] = useState([])  
+  const [showUrl, setShowUrl] = useState(false)
 
   let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
   let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
@@ -33,7 +35,7 @@ const FindingsComp = (props) => {
 
   useEffect(() => {
     async function getDataFromServer() {
-      let serverAddress = window.location.hostname == "localhost" ? "http://localhost:3000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+      let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
       let chords_weight = await axios.get(serverAddress + 'getInfoOfAllSongs')
       chords_weight = chords_weight.data
       setChordsWeight(chords_weight.result)
@@ -43,34 +45,49 @@ const FindingsComp = (props) => {
 
 
   async function toogleCategoryOrArtist(e) {
-    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:3000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
     let curr_data = []
-    console.log(e.target.value)
+
     if (e.target.value === "category") {
       setIsCategory(true)
       curr_data = await axios.get(serverAddress + 'getCategories')
     }
+
     else {
       setIsCategory(false)
       curr_data = await axios.get(serverAddress + 'getArtists')
     }
+
     setData(curr_data.data.list_elements)
   }
 
 
-  async function handleClick(category) {
-    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:3000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+  async function handleClick(chosenValue) {
+    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+    let artist_url = await axios.get(serverAddress + 'getUrls')
     let chords_weight = []
+
     if (isCategory) {
-      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificCategory', { value: category })
+      setShowUrl(false)
+      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificCategory', { value: chosenValue })
     }
     else {
-      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: category })
+      setShowUrl(true)
+      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: chosenValue }) 
     }
+
     chords_weight = chords_weight.data
-    console.log(chords_weight)
     setChordsWeight(chords_weight.result)
+    setArtistUrl(chords_weight.artist_url)
   }
+
+
+  const Url = () => (
+    <div id="url" className="search-url">
+      <a class="data-source-link" href={artistUrl}>To data source for this artist - Tab4U</a>
+    </div>
+  )
+
 
   console.log(data)
   let jsx_code = data.map((elem) => {
@@ -96,20 +113,17 @@ const FindingsComp = (props) => {
           <h4>Choose the distribution parameters:</h4>
 
           <fieldset class="graph-parameters" id="group1" onChange={(e) => toogleCategoryOrArtist(e)}>
-          
             {/* <div class="form-check form-options">
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="category" name="group1" />Genres<br />
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />All artists<br />
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />Famous artists<br />
             </div> */}
-
             <div class="form-check form-check-inline">
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="category" name="group1" />genres<br />
             </div>
             <div class="form-check form-check-inline">
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />all artists<br />
             </div>
-
             <div class="form-check form-check-inline">
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />known artists<br />
             </div>
@@ -122,8 +136,10 @@ const FindingsComp = (props) => {
             <option selected hidden >Select</option>
             {jsx_code}
           </select><br />
-          {/* <input type ="button" value="Get info" onClick={()=>handleClick()}/> */}
-          {/* {category} */}
+
+          <div>
+            { showUrl? <Url /> : null }
+          </div>
 
         </div>
 
