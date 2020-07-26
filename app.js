@@ -53,16 +53,21 @@ app.get("/getArtists", async function (req, res) {
 });
 
 
+app.get("/getFamousArtists", async function (req, res) {
+  let artists_json = data["famous_artists"]
+  res.send({ list_elements: artists_json })
+});
+
+
 app.post("/getInfoOfSpecificArtist", function (req, res) {
   let artist = req.body.value
   let url = data.artists_urls[artist]
   let result = data.chords_weight_by_artists
   let keys = Object.keys(result);
-  
+
   new_keys = keys.filter((key) => {
     return key === artist
   })
-  console.log(new_keys)
   let res_json_not_sorted = result[new_keys[0]]
   let res_array_not_sorted = []
   for (key of Object.keys(res_json_not_sorted)) {
@@ -82,20 +87,16 @@ app.get("/getInfoOfAllSongs", function (req, res) {
     res_array_not_sorted.push({ chord: key, value: res_json_not_sorted[key] })
   }
   let res_array_sorted = res_array_not_sorted.sort((elemA, elemB) => { return elemB.value - elemA.value })
-  console.log(res_array_sorted)
   res.send({ result: res_array_sorted })
-  console.log(Object.keys(result).length)
 })
 
 
 app.get("/getUrls", async function (req, res) {
-  console.log(data.artists_urls)
   res.send({ list_elements: data.artists_urls })
 });
 
 
 app.get("/getCategories", async function (req, res) {
-  console.log(data.categories)
   res.send({ list_elements: data.categories })
 });
 
@@ -103,24 +104,20 @@ app.get("/getCategories", async function (req, res) {
 app.post("/getInfoOfSpecificCategory", function (req, res) {
   let a = { "gi": { "df": 2, "gr": 5 } }
   let category = req.body.value
-  console.log(category)
   let result = data.chords_weight_by_genres
   let keys = Object.keys(result);
   new_keys = keys.filter((key) => {
     return key === category
   })
-  console.log(new_keys)
   let res_json_not_sorted = result[new_keys[0]]
   let res_array_not_sorted = []
   for (key of Object.keys(res_json_not_sorted)) {
     res_array_not_sorted.push({ chord: key, value: res_json_not_sorted[key] })
   }
   let res_array_sorted = res_array_not_sorted.sort((elemA, elemB) => { return elemB.value - elemA.value })
-  console.log(res_array_sorted)
 
   let sortComp = function (elemA, elemB) {}
   res.send({ result: res_array_sorted })
-  console.log(Object.keys(result).length)
 })
 
 
@@ -131,7 +128,6 @@ app.get("/SimilarProjects", function (req, res) {
 
 app.get("/OurFindings", function (req, res) {
   const artists = find(collection, {}, function (err, artists) {
-    console.log("found " + artists.length + " artists in the DB");
     res.render("OurFindings", { artists: artists });
   });
 });

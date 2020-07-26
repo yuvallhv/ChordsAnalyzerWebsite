@@ -16,6 +16,7 @@ const FindingsComp = (props) => {
   const [artistUrl, setArtistUrl] = useState("")
   const [chords_weight, setChordsWeight] = useState([])  
   const [showUrl, setShowUrl] = useState(false)
+  const [distributionOption, setDistributionOption] = useState("")
 
   let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
   let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
@@ -47,15 +48,18 @@ const FindingsComp = (props) => {
   async function toogleCategoryOrArtist(e) {
     let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
     let curr_data = []
+    setDistributionOption(e.target.value)
 
-    if (e.target.value === "category") {
-      setIsCategory(true)
+    if (e.target.value == "category") {
       curr_data = await axios.get(serverAddress + 'getCategories')
     }
-
     else {
-      setIsCategory(false)
-      curr_data = await axios.get(serverAddress + 'getArtists')
+      if (e.target.value == "all_artists") {
+        curr_data = await axios.get(serverAddress + 'getArtists')
+      }
+      else {
+        curr_data = await axios.get(serverAddress + 'getFamousArtists')
+      }
     }
 
     setData(curr_data.data.list_elements)
@@ -67,13 +71,13 @@ const FindingsComp = (props) => {
     let artist_url = await axios.get(serverAddress + 'getUrls')
     let chords_weight = []
 
-    if (isCategory) {
+    if (distributionOption == "category") {
       setShowUrl(false)
       chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificCategory', { value: chosenValue })
     }
     else {
       setShowUrl(true)
-      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: chosenValue }) 
+        chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: chosenValue }) 
     }
 
     chords_weight = chords_weight.data
@@ -119,13 +123,13 @@ const FindingsComp = (props) => {
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />Famous artists<br />
             </div> */}
             <div class="form-check form-check-inline">
-              <input class="form-check-input graph-parameter-checkbox" type="radio" value="category" name="group1" />genres<br />
+              <input class="form-check-input graph-parameter-checkbox" type="radio" value="category" name="group1" />Genres<br />
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />all artists<br />
+              <input class="form-check-input graph-parameter-checkbox" type="radio" value="famous_artists" name="group1" />Famous artists<br />
             </div>
             <div class="form-check form-check-inline">
-              <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />known artists<br />
+              <input class="form-check-input graph-parameter-checkbox" type="radio" value="all_artists" name="group1" />All artists<br />
             </div>
           </fieldset>
 
