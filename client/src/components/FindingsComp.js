@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../design/css/styles.css';
 import { Bar } from 'react-chartjs-2';
-
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
+
 // var CanvasJSReact = require('./canvasjs.react');
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 // const ChordsAalyzerData = require('../BL/GetChordsAnalyzerData.js')
+
+
 const FindingsComp = (props) => {
   const [isCategory, setIsCategory] = useState(true)
   const [data, setData] = useState([])
@@ -32,6 +34,7 @@ const FindingsComp = (props) => {
     ]
   }
 
+  
   useEffect(() => {
     async function getDataFromServer() {
       console.log("im here")
