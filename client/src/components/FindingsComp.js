@@ -13,7 +13,6 @@ import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 const FindingsComp = (props) => {
   const [isCategory, setIsCategory] = useState(true)
   const [data, setData] = useState([])
-  //  const [category,setCategory] = useState("bla")
   const [chords_weight, setChordsWeight] = useState([])
 
   let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
@@ -34,7 +33,8 @@ const FindingsComp = (props) => {
 
   useEffect(() => {
     async function getDataFromServer() {
-      let chords_weight = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfAllSongs')
+      let serverAddress = window.location.hostname == "localhost" ? "http://localhost:3000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+      let chords_weight = await axios.get(serverAddress + 'getInfoOfAllSongs')
       chords_weight = chords_weight.data
       setChordsWeight(chords_weight.result)
     }
@@ -43,31 +43,29 @@ const FindingsComp = (props) => {
 
 
   async function toogleCategoryOrArtist(e) {
+    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:3000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
     let curr_data = []
     console.log(e.target.value)
     if (e.target.value === "category") {
       setIsCategory(true)
-      curr_data = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getCategories')
+      curr_data = await axios.get(serverAddress + 'getCategories')
     }
     else {
       setIsCategory(false)
-      curr_data = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getArtists')
+      curr_data = await axios.get(serverAddress + 'getArtists')
     }
     setData(curr_data.data.list_elements)
   }
 
 
   async function handleClick(category) {
-    let port = process.env.PORT;
-    console.log("kdjfhskjdhfkjsdhfkjhd")
-    console.log(window.location.hostname)
-
+    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:3000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
     let chords_weight = []
     if (isCategory) {
-      chords_weight = await axios.post('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfSpecificCategory', { value: category })
+      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificCategory', { value: category })
     }
     else {
-      chords_weight = await axios.post('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfSpecificArtist', { value: category })
+      chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: category })
     }
     chords_weight = chords_weight.data
     console.log(chords_weight)
