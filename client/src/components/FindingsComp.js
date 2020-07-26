@@ -19,6 +19,7 @@ const FindingsComp = (props) => {
   let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
   let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
   console.log(chords_weight.result)
+  console.log(chords_weight)
   console.log(chords)
   console.log(weight)
   let state = {
@@ -34,10 +35,9 @@ const FindingsComp = (props) => {
     ]
   }
 
-  
+
   useEffect(() => {
     async function getDataFromServer() {
-      console.log("im here")
       let chords_weight = await axios.get('https://chords-analyzer-mini-proj.herokuapp.com/getInfoOfAllSongs')
       chords_weight = chords_weight.data
       setChordsWeight(chords_weight.result)
@@ -76,7 +76,7 @@ const FindingsComp = (props) => {
     setChordsWeight(chords_weight.result)
   }
 
-
+  console.log(data)
   let jsx_code = data.map((elem) => {
     return (
       <option value={elem} >
@@ -124,9 +124,6 @@ const FindingsComp = (props) => {
 
           <select class="graph-parameters form-control" name="categories_list" id="categories_list" hidden={false} onChange={(e) => handleClick(e.target.value)}>
             <option selected hidden >Select</option>
-
-            
-
             {jsx_code}
           </select><br />
           {/* <input type ="button" value="Get info" onClick={()=>handleClick()}/> */}
