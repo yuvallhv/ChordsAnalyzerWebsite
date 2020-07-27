@@ -4,6 +4,10 @@ import '../design/css/styles.css';
 import { Bar } from 'react-chartjs-2';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 
+// import ReactDOM from 'react-dom';
+// import { DropDownList } from '@progress/kendo-react-dropdowns';
+// import { filterBy } from '@progress/kendo-data-query';;
+
 // var CanvasJSReact = require('./canvasjs.react');
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -14,13 +18,14 @@ const FindingsComp = (props) => {
   const [isCategory, setIsCategory] = useState(true)
   const [data, setData] = useState([])
   const [artistUrl, setArtistUrl] = useState("")
-  const [chords_weight, setChordsWeight] = useState([])  
+  const [chords_weight, setChordsWeight] = useState([]) 
+  const [chords_weight_by_group, setChordsWeightByGroup] = useState([])  
   const [showUrl, setShowUrl] = useState(false)
   const [distributionOption, setDistributionOption] = useState("")
 
   let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
   let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
-  let state = {
+  let state_chords_weight = {
     labels: chords,
     datasets: [
       {
@@ -33,13 +38,34 @@ const FindingsComp = (props) => {
     ]
   }
 
+  let chords_groups = chords_weight_by_group != undefined ? chords_weight_by_group.slice(0, 30).map((elem) => { return elem.chord }) : []
+  let groups_weight = chords_weight_by_group.slice(0, 30).map((elem) => { return elem.value })
+  let state_chords_groups_weights = {
+    labels: chords_groups,
+    datasets: [
+      {
+        label: 'Chords groups weight',
+        backgroundColor: 'rgba(75,192,192,1)',
+        borderColor: 'rgba(0,0,0,1)',
+        borderWidth: 2,
+        data: groups_weight
+      }
+    ]
+  }
+
 
   useEffect(() => {
     async function getDataFromServer() {
       let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+      
       let chords_weight = await axios.get(serverAddress + 'getInfoOfAllSongs')
+      let chords_weight_by_group = await axios.get(serverAddress + 'getInfoOfAllSongsByGroups')
+
+      chords_weight_by_group = chords_weight_by_group.data
       chords_weight = chords_weight.data
+
       setChordsWeight(chords_weight.result)
+      setChordsWeightByGroup(chords_weight_by_group.result)
     }
     getDataFromServer()
   }, [])
@@ -70,18 +96,24 @@ const FindingsComp = (props) => {
     let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
     let artist_url = await axios.get(serverAddress + 'getUrls')
     let chords_weight = []
+    let chords_weight_by_group = []
 
     if (distributionOption == "category") {
       setShowUrl(false)
       chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificCategory', { value: chosenValue })
+      chords_weight_by_group = await axios.post(serverAddress + 'getInfoOfSpecificCategoryByGroups', { value: chosenValue })
     }
     else {
       setShowUrl(true)
-        chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: chosenValue }) 
+        chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: chosenValue })
+        chords_weight_by_group = await axios.post(serverAddress + 'getInfoOfSpecificArtistByGroups', { value: chosenValue }) 
     }
 
     chords_weight = chords_weight.data
+    chords_weight_by_group = chords_weight_by_group.data
+
     setChordsWeight(chords_weight.result)
+    setChordsWeightByGroup(chords_weight_by_group.result)
     setArtistUrl(chords_weight.artist_url)
   }
 
@@ -92,8 +124,7 @@ const FindingsComp = (props) => {
     </div>
   )
 
-
-  console.log(data)
+  
   let jsx_code = data.map((elem) => {
     return (
       <option value={elem} >
@@ -101,7 +132,6 @@ const FindingsComp = (props) => {
       </option>
     )
   })
-
 
   return (
     <React.Fragment>
@@ -141,14 +171,32 @@ const FindingsComp = (props) => {
             {jsx_code}
           </select><br />
 
+
+
           <div>
             { showUrl? <Url /> : null }
           </div>
 
         </div>
 
+
         <Bar
-          data={state}
+          data={state_chords_weight}
+          options={{
+            title: {
+              display: true,
+              text: '',
+              fontSize: 20
+            },
+            legend: {
+              display: false,
+              position: 'right'
+            }
+          }} />
+
+
+        <Bar
+          data={state_chords_groups_weights}
           options={{
             title: {
               display: true,

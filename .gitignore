@@ -4,3 +4,5 @@ secrets.json
 /*.env
 npm-debug.log
 views/temp.ejs
+client/package 2.json
+working_general_data_no_groups.json
