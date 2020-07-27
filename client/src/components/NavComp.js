@@ -28,6 +28,12 @@ const NavComp = (props) => {
             </li>
 
             <li class="nav-item">
+              <Link to="/try_yourself">
+                <a class="nav-link" href="TryYourself">TryYourself</a>
+              </Link>
+            </li>
+
+            <li class="nav-item">
               <Link to="/DataScheme">
                 <a class="nav-link" href="DataSchema">Our data schema</a>
               </Link>

@@ -20,17 +20,8 @@ const MainPageComp  = (props) =>
 
       <div class="container marketing">
         <div class="row">
-          <div class="col-lg-4">
-            <img class="circle-image" src={require("../design/images/chord1.png")} alt=""></img>
-            <h2>Our Findings</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p>
-              <Link to="/findings">
-                <a class="btn btn-secondary" href="OurFindings" role="button">Read more &raquo;</a>
-              </Link>
-            </p>
-          </div>
-          <div class="col-lg-4">
+
+        <div class="col-lg-4">
             <img class="circle-image" src={require("../design/images/chord2.png")} alt=""/>
             <h2>About the Project</h2>
             <p>
@@ -43,16 +34,29 @@ const MainPageComp  = (props) =>
               </Link>
             </p>
           </div>
+
           <div class="col-lg-4">
-            <img class="circle-image" src={require("../design/images/chord3.png")} alt=""/>
-            <h2>About Us</h2>
-            <p>We are Chaim and Yuval.</p>
+            <img class="circle-image" src={require("../design/images/chord1.png")} alt=""></img>
+            <h2>Our Findings</h2>
+            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
             <p>
-              <Link to="/about_us">
-                <a class="btn btn-secondary" href="AboutUs" role="button">Read more &raquo;</a>
+              <Link to="/findings">
+                <a class="btn btn-secondary" href="OurFindings" role="button">Read more &raquo;</a>
               </Link>
             </p>
           </div>
+          
+          <div class="col-lg-4">
+            <img class="circle-image" src={require("../design/images/chord3.png")} alt=""/>
+            <h2>Try Yourself</h2>
+            <p>Play with the data yourself. You can create a distribution graph of the chords by song's categories or specific artists.</p>
+            <p>
+              <Link to="/try_yourself">
+                <a class="btn btn-secondary" href="TryYourself" role="button">Read more &raquo;</a>
+              </Link>
+            </p>
+          </div>
+
         </div>
       </div>
 

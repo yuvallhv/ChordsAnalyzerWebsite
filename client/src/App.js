@@ -12,6 +12,7 @@ import AboutProjectComp from './components/AboutProjectComp'
 import DataScheme from './components/DataScheme'
 import SimilarProjectsComp from './components/SimilarProjectsComp'
 import FindingsComp from './components/FindingsComp'
+import TryYourselfComp from './components/TryYourselfComp'
 
 function App() {
   function was_click(){
@@ -30,6 +31,7 @@ function App() {
     <Route path="/about_project" component={AboutProjectComp} />  
     <Route path="/similar_projects" component={SimilarProjectsComp} />  
     <Route path="/findings" component={FindingsComp} />  
+    <Route path="/try_yourself" component={TryYourselfComp} />  
     <Route exact path="/" component={MainPageComp} />      
 
      </Switch>

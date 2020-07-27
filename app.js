@@ -180,6 +180,13 @@ app.get("/OurFindings", function (req, res) {
 });
 
 
+app.get("/TryYourself", function (req, res) {
+  const artists = find(collection, {}, function (err, artists) {
+    res.render("TryYourself", { artists: artists });
+  });
+});
+
+
 app.get("/AboutTheProject", function (req, res) {
   res.render("AboutTheProject");
 });

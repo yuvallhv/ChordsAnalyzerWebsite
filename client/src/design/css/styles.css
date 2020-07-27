@@ -292,6 +292,10 @@ p, li {
   font-size: 1.3em;
 }
 
+.chords-graphs-container {
+  text-align: center;
+}
+
 /* ----------- responsive ----------- */
 @media (min-width: 40em) {
   /* Bump up size of carousel content */
