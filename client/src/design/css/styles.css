@@ -262,6 +262,11 @@ p, li {
 }
 
 /* ----------- our findings ----------- */
+.graph-image-container{
+  text-align: center;
+}
+
+/* ----------- try yourself ----------- */
 .parameters-header-container  {
   text-align: center;
 }
