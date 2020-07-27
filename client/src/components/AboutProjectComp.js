@@ -1,4 +1,3 @@
-// import React from 'react'
 import React, { useState, useEffect } from 'react'
 import ReactPlayer from "react-player"
 import '../design/css/styles.css';

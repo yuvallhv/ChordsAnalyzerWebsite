@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../design/css/styles.css';
 import {Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 
 const SimilarProjectsComp  = (props) =>
 {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+      });
+
     return(
         <React.Fragment>
             <img class="text-page-image saxophone-img" src={require("../design/images/piano drawing edit.png")} alt=""/>
