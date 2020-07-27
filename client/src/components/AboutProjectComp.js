@@ -1,10 +1,16 @@
-import React from 'react'
+// import React from 'react'
+import React, { useState, useEffect } from 'react'
 import ReactPlayer from "react-player"
 import '../design/css/styles.css';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 
 
 const AboutProjectComp = (props) => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  });
+
   return (
     <React.Fragment>
       <img class="text-page-image bird-img" src={require("../design/images/bird.png")} alt="sdfsdfsdf" />

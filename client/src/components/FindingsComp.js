@@ -3,6 +3,9 @@ import '../design/css/styles.css';
 
 const FindingsComp = (props) => {
   
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  });
 
     return (
       <React.Fragment>

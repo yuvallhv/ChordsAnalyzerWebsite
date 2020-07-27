@@ -4,10 +4,6 @@ import '../design/css/styles.css';
 import { Bar } from 'react-chartjs-2';
 import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 
-// import ReactDOM from 'react-dom';
-// import { DropDownList } from '@progress/kendo-react-dropdowns';
-// import { filterBy } from '@progress/kendo-data-query';;
-
 // var CanvasJSReact = require('./canvasjs.react');
 // var CanvasJS = CanvasJSReact.CanvasJS;
 // var CanvasJSChart = CanvasJSReact.CanvasJSChart;
@@ -56,6 +52,8 @@ const TryYourselfComp = (props) => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0)
+    
     async function getDataFromServer() {
       let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
       
