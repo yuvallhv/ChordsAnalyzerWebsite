@@ -266,6 +266,11 @@ p, li {
   text-align: center;
 }
 
+.graph-image {
+  width: 640px;
+  height: 360px;
+}
+
 /* ----------- try yourself ----------- */
 .parameters-header-container  {
   text-align: center;
@@ -334,5 +339,17 @@ p, li {
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
     font-size: 3.5rem;
+  }
+
+  /* .youtube-video-container {
+    display: inline;
+    margin: 0 auto;
+  } */
+}
+
+@media (min-width: 1650px) {
+  .youtube-video-container {
+    display: inline;
+    margin: 0 auto;
   }
 }

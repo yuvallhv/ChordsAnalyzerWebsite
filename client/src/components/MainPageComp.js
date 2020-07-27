@@ -38,7 +38,7 @@ const MainPageComp  = (props) =>
           <div class="col-lg-4">
             <img class="circle-image" src={require("../design/images/chord1.png")} alt=""></img>
             <h2>Our Findings</h2>
-            <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+            <p>In this project, we examined chords data from 2 main aspect: chords weights in songs and chords distribution by common groups.</p>
             <p>
               <Link to="/findings">
                 <a class="btn btn-secondary" href="OurFindings" role="button">Read more &raquo;</a>

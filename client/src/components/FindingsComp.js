@@ -11,7 +11,7 @@ const FindingsComp = (props) => {
   
           <h1 class="page-header">Our Findings</h1>
 
-          <p>In this project, we examined the data from two main aspect.</p>
+          <p>In this project, we examined chords data from two main aspect.</p>
 
           <br></br>
           <h2>Chords Weights</h2>
@@ -22,37 +22,39 @@ const FindingsComp = (props) => {
           <p>We gathered some interesting distributions from this aspect: </p>
 
           <h4>Very diverse artist (compare to others) is:</h4>
+          <br></br>
           <div class="graph-image-container">
             <h5>הראל סקעת</h5> 
             <img class="graph-image" src={require("../design/images/Harel Skat2.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
+            <br></br><br></br>
           </div>
           
           <h4>Folk Songs are very monotonic:</h4>
+          <br></br>
           <div class="graph-image-container">
             <h5>עממי</h5> 
             <img class="graph-image" src={require("../design/images/Ammamy.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
+            <br></br><br></br>
           </div>
 
-          <h4>mediocre in their diversity are-</h4>
-          
+          <h4>Mediocre in their diversity are:</h4>
+          <br></br>
           <div class="graph-image-container">
             <h5>גידי גוב</h5>
             <img class="graph-image" src={require("../design/images/Aviv Geffen.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
+            <br></br><br></br>
           </div>
 
-          
+          <br></br>
           <div class="graph-image-container">
             <h5>אביב גפן</h5>
             <img class="graph-image" src={require("../design/images/Gidi Gov.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
+            <br></br><br></br>
           </div>
 
           <br></br>
           <br></br>
-          <h2>Chords Distribution by Groups</h2>
+          <h2>Chords Distribution by Common Groups</h2>
           <p>
             In the music world, there is some division of chords to groups and each group supposed to have a different effect on the song. <br></br>
             After consulting with musicians and music blogs we decided on the following division:
@@ -70,29 +72,47 @@ const FindingsComp = (props) => {
           </ul>
 
           <p>
-            However, we were surprised to discover that in Hebrew songs from our data source do not comply so well with this theory. <br></br>
-            Most of the songs are using mainly both chords from the Major and Minor groups, with no relation to their genre. <br></br>
-            The only genre that we saw some relation to this theory is Salsa:
+            However, we were surprised to discover that in most cases, Hebrew songs from our data source do not comply so well with this theory. <br></br>
+            Most of the songs are using mainly both chords from the Major and Minor groups, almost always more from Major group, with no relation to their genre. <br></br>
           </p>
+
+          <p>
+            We did find some genres that stand out of this conclusion and do comply to the expectation, such as - 
+          </p>
+
+          <h4>Mostly happy as expected:</h4>
+          <br></br>
           <div class="graph-image-container">
           <h5>סלסה</h5> 
             <img class="graph-image" src={require("../design/images/Salsa.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
+            <br></br><br></br>
           </div>
 
-          <h4>Other interesting genres</h4>
-          <div class="graph-image-container">
-            <h5>רוק</h5>
-            <img class="graph-image" src={require("../design/images/Rock.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
-          </div>
-
-          
+          <h4>A bit more sad as expected:</h4>
+          <br></br>
           <div class="graph-image-container">
             <h5>מזרחית</h5> 
             <img class="graph-image" src={require("../design/images/Mizrahit.png")} alt="Can't display image, something went wrong..." />
-            <br></br>
+            <br></br><br></br>
           </div>
+
+          <h4>Not as expeted:</h4>
+
+          <br></br>
+          <div class="graph-image-container">
+            <h5>שירי יום הזיכרון</h5>
+            <img class="graph-image" src={require("../design/images/memorial day.png")} alt="Can't display image, something went wrong..." />
+            <br></br><br></br>
+          </div>
+
+          <br></br>
+          <div class="graph-image-container">
+            <h5>שירים מרגשים</h5>
+            <img class="graph-image" src={require("../design/images/moving songs.png")} alt="Can't display image, something went wrong..." />
+            <br></br><br></br>
+          </div>
+
+          
 
         </div>
   

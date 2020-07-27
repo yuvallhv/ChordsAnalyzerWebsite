@@ -14,8 +14,8 @@ const AboutProjectComp = (props) => {
         <h1 class="page-header">About the project</h1>
         <p>
           This project was done as part of Digital Humanities course in Ben Gurion University.<br />
-    We chose to investigate songs through the aspect of chord since this is an interesting and unique way to ask questions about songs.
-    </p>
+          We chose to investigate songs through the aspect of chord since this is an interesting and unique way to ask questions about songs.
+        </p>
         <br />
         <hr />
         <br />
@@ -53,6 +53,7 @@ const AboutProjectComp = (props) => {
         <h2>Project's Goal</h2>
         <p>
           First, we wanted to check if the variety and repetition of chords differ from artists to artist or by songs genres.<br />
+          Moreover, we wanted to see if chords groups and their theoretical effect on songs are noticeable in practice. <br />
           After establishing that there is difference we wanted to create a visual way to present that information. </p>
         <br />
         <hr />
@@ -80,10 +81,9 @@ const AboutProjectComp = (props) => {
         <p>The data processing had several goals.</p>
         <ul>
           <li><span class="li-header">Clean the data</span> - to make the scraping process more efficient and fast, we had to scrape some of the data “as is” from the website html.</li>
-          <li><span class="li-header">Get general information</span> - for the analysis of the data we needed to go over all the data and get general information. <br />
-      For example: all the possible categories for songs.</li>
           <li><span class="li-header">Fix mistakes</span> - since the data on the website is not perfect and the scraping process also is prone for errors, we tried to fix some of the major mistakes we found. <br />
-      For example: fixing out of place chorus names.</li>
+          For example: fixing out of place chorus names.</li>
+      
         </ul>
         <p>
           <Link to="/DataScheme">
@@ -94,16 +94,22 @@ const AboutProjectComp = (props) => {
 
         <h3>Step 3: Data Analysis</h3>
         <p>
-          To enable flexibility and speed with the way we analyze the data, we decided to use a database.<br />
-    Since we chose to save the data as json files the natural choice was MongoDB database and using Mongoose to query the data.
-  </p>
+          To enable flexibility and speed with the way we analyze the data, we decided to use json file that includes processed data that is enough to answer the questions in our project. <br />
+          That way we could easily extract information and display it clearly.<br />
+          This required us the following steps:
+        </p>
+        <ul>
+          <li><span class="li-header">Get general information</span> - we needed to go over all the data and get general information. <br />
+            For example: all the possible categories for songs.</li>
+          <li><span class="li-header">Aggregate data</span> - to answer our questions we needed to aggregate different parts of the data. <br />
+            For example: summarize the chords weights and divide to chords groups.</li>
+        </ul>
         <br />
 
         <h3>Step 4: Results visualization</h3>
         <p>
           To present the project we created a website hosted on Heroku cloud application platform.<br />
-    This required us to use (and learn) different web technologies such as HTML, CSS and React.<br />
-    Using a web server enabled us to integrate MongoDB queries instead of showing static results.
+    This required us to use (and learn) different web technologies such as HTML, CSS and React.
   </p>
         <br />
         <hr />
@@ -113,9 +119,9 @@ const AboutProjectComp = (props) => {
         <h2>Technologies Summary</h2>
         <p>We used various technologies through the project.</p>
         <ul>
-          <li><span class="li-header">Data Collection</span> - Python, Selenium</li>
+          <li><span class="li-header">Data Collection</span> - Python, Selenium, JSON</li>
           <li><span class="li-header">Data Processing</span> - Python </li>
-          <li><span class="li-header">Data Analysis</span> - MongoDB, Mongoose</li>
+          <li><span class="li-header">Data Analysis</span> - Python, JSON</li>
           <li><span class="li-header">Results visualization</span> - HTML, CSS, Node.js, React</li>
         </ul>
         <br />
