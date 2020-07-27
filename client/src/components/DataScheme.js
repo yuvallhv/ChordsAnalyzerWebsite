@@ -4,6 +4,10 @@ import {Link, Route, Switch, BrowserRouter } from 'react-router-dom'
 
 const DataScheme  = (props) =>
 {
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  });
+
     return(
         <React.Fragment>
             <div class="text-container">
