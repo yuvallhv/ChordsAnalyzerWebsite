@@ -2,76 +2,57 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import '../design/css/styles.css';
 import { Bar } from 'react-chartjs-2';
-import { Link, Route, Switch, BrowserRouter } from 'react-router-dom'
-
-// var CanvasJSReact = require('./canvasjs.react');
-// var CanvasJS = CanvasJSReact.CanvasJS;
-// var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-// const ChordsAalyzerData = require('../BL/GetChordsAnalyzerData.js')
 
 
 const TryYourselfComp = (props) => {
-  const [isCategory, setIsCategory] = useState(true)
-  const [data, setData] = useState([])
+  let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
+
+  const [listOptions, setListOptions] = useState([])
   const [artistUrl, setArtistUrl] = useState("")
   const [parameterName, setParameterName] = useState("")
-  const [chords_weight, setChordsWeight] = useState([]) 
-  const [chords_weight_by_group, setChordsWeightByGroup] = useState([])  
   const [showUrl, setShowUrl] = useState(false)
   const [distributionOption, setDistributionOption] = useState("")
+  const [chordsWeightForGraph,setChordsWeightForGraph] = useState([])
+  const [chordsWeightByGroupForGraph,setChordsWeightByGroupForGraph] = useState([])
 
-  let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
-  let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
-  let state_chords_weight = {
-    labels: chords,
-    datasets: [
-      {
-        label: 'Chords weight',
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: weight
-      }
-    ]
+  async function getDataForGraphes(chordsData,isGroup){
+    let chords_weight = chordsData.data.result
+    let chords = chords_weight != undefined ? chords_weight.slice(0, 30).map((elem) => { return elem.chord }) : []
+    let weight = chords_weight.slice(0, 30).map((elem) => { return elem.value })
+    let state_chords_weight = {
+      labels: chords,
+      datasets: [
+        {
+          label: 'Chords weight',
+          backgroundColor: '#5588a3',
+          borderColor: 'rgba(0,0,0,1)',
+          borderWidth: 2,
+          data: weight
+        }
+      ]
+    }
+    if(isGroup){
+      setChordsWeightByGroupForGraph(state_chords_weight)
+    }
+    else{
+      setChordsWeightForGraph(state_chords_weight)
+    }
   }
-
-  let chords_groups = chords_weight_by_group != undefined ? chords_weight_by_group.slice(0, 30).map((elem) => { return elem.chord }) : []
-  let groups_weight = chords_weight_by_group.slice(0, 30).map((elem) => { return elem.value })
-  let state_chords_groups_weights = {
-    labels: chords_groups,
-    datasets: [
-      {
-        label: 'Chords groups weight',
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: groups_weight
-      }
-    ]
-  }
-
 
   useEffect(() => {
     window.scrollTo(0, 0)
     
     async function getDataFromServer() {
-      let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
       
       let chords_weight = await axios.get(serverAddress + 'getInfoOfAllSongs')
       let chords_weight_by_group = await axios.get(serverAddress + 'getInfoOfAllSongsByGroups')
-
-      chords_weight_by_group = chords_weight_by_group.data
-      chords_weight = chords_weight.data
-
-      setChordsWeight(chords_weight.result)
-      setChordsWeightByGroup(chords_weight_by_group.result)
+      getDataForGraphes(chords_weight,false)
+      getDataForGraphes(chords_weight_by_group,true)
     }
     getDataFromServer()
   }, [])
 
-
   async function toogleCategoryOrArtist(e) {
-    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
     let curr_data = []
     setDistributionOption(e.target.value)
 
@@ -87,13 +68,11 @@ const TryYourselfComp = (props) => {
       }
     }
 
-    setData(curr_data.data.list_elements)
+    setListOptions(curr_data.data.list_elements)
   }
 
 
   async function handleClick(chosenValue) {
-    let serverAddress = window.location.hostname == "localhost" ? "http://localhost:5000/" : 'https://chords-analyzer-mini-proj.herokuapp.com/'
-    let artist_url = await axios.get(serverAddress + 'getUrls')
     let chords_weight = []
     let chords_weight_by_group = []
 
@@ -109,13 +88,9 @@ const TryYourselfComp = (props) => {
       chords_weight = await axios.post(serverAddress + 'getInfoOfSpecificArtist', { value: chosenValue })
       chords_weight_by_group = await axios.post(serverAddress + 'getInfoOfSpecificArtistByGroups', { value: chosenValue }) 
     }
-
-    chords_weight = chords_weight.data
-    chords_weight_by_group = chords_weight_by_group.data
-
-    setChordsWeight(chords_weight.result)
-    setChordsWeightByGroup(chords_weight_by_group.result)
-    setArtistUrl(chords_weight.artist_url)
+    getDataForGraphes(chords_weight,false)
+    getDataForGraphes(chords_weight_by_group,true)
+    setArtistUrl(chords_weight.data.artist_url)
   }
 
 
@@ -126,7 +101,7 @@ const TryYourselfComp = (props) => {
   )
 
   
-  let jsx_code = data.map((elem) => {
+  let listOptionsAsJsx = listOptions.map((elem) => {
     return (
       <option value={elem} >
         {elem}
@@ -148,11 +123,6 @@ const TryYourselfComp = (props) => {
           <h4>Choose the distribution parameters:</h4>
 
           <fieldset class="graph-parameters" id="group1" onChange={(e) => toogleCategoryOrArtist(e)}>
-            {/* <div class="form-check form-options">
-              <input class="form-check-input graph-parameter-checkbox" type="radio" value="category" name="group1" />Genres<br />
-              <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />All artists<br />
-              <input class="form-check-input graph-parameter-checkbox" type="radio" value="artist" name="group1" />Famous artists<br />
-            </div> */}
             <div class="form-check form-check-inline">
               <input class="form-check-input graph-parameter-checkbox" type="radio" value="category" name="group1" />Genres<br />
             </div>
@@ -169,7 +139,7 @@ const TryYourselfComp = (props) => {
 
           <select class="graph-parameters form-control" name="categories_list" id="categories_list" hidden={false} onChange={(e) => handleClick(e.target.value)}>
             <option selected hidden >Select</option>
-            {jsx_code}
+            {listOptionsAsJsx}
           </select><br />
 
           <div>
@@ -182,7 +152,7 @@ const TryYourselfComp = (props) => {
           <br></br>
           <h3>Chords distribution by groups {parameterName}</h3>
           <Bar
-            data={state_chords_groups_weights}
+            data={chordsWeightByGroupForGraph}
             options={{
               title: {
                 display: true,
@@ -199,7 +169,7 @@ const TryYourselfComp = (props) => {
           <br></br>
           <h3>Chords distribution by weight {parameterName}</h3>
           <Bar
-            data={state_chords_weight}
+            data={chordsWeightForGraph}
             options={{
               title: {
                 display: true,
