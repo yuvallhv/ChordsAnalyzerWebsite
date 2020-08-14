@@ -72,7 +72,7 @@ const TryYourselfComp = (props) => {
   }
 
 
-  async function handleClick(chosenValue) {
+  async function hendleListChoose(chosenValue) {
     let chords_weight = []
     let chords_weight_by_group = []
 
@@ -137,7 +137,7 @@ const TryYourselfComp = (props) => {
           <br/>
           <h4>Choose specifics:</h4>
 
-          <select class="graph-parameters form-control" name="categories_list" id="categories_list" hidden={false} onChange={(e) => handleClick(e.target.value)}>
+          <select class="graph-parameters form-control" name="categories_list" id="categories_list" hidden={false} onChange={(e) => hendleListChoose(e.target.value)}>
             <option selected hidden >Select</option>
             {listOptionsAsJsx}
           </select><br />

@@ -107,7 +107,11 @@ const AboutProjectComp = (props) => {
           <li><span class="li-header">Get general information</span> - we needed to go over all the data and get general information. <br />
             For example: all the possible categories for songs.</li>
           <li><span class="li-header">Aggregate data</span> - to answer our questions we needed to aggregate different parts of the data. <br />
-            For example: summarize the chords weights and divide to chords groups.</li>
+            For example: summarize the chords weights and divide to chords groups.
+            <br/>
+            <span class="li-header">Summarize chords weight:</span>caclulation for chords weight made by counting spaces between different chords. <br />
+            <span class="li-header">Divide to chords groups:</span>Every chord group contain chords by some patttern.we summarize the chords weight by the diffenrt groups.</li>
+
         </ul>
         <br />
 

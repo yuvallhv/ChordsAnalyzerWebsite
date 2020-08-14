@@ -15,9 +15,7 @@ import FindingsComp from './components/FindingsComp'
 import TryYourselfComp from './components/TryYourselfComp'
 
 function App() {
-  function was_click(){
-    axios.get('http://localhost:5000/').then((data)=>{console.log(data)})
-  }
+
   return (
 
     <BrowserRouter >
